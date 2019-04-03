@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>Scan your QR Code!</h1>
     <p class="error">{{ error }}</p>
 
     <p class="decode-result">Last result: <b>{{ result }}</b></p>
@@ -13,10 +13,7 @@
 import { QrcodeStream } from 'vue-qrcode-reader'
 
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
+  name: 'QRCodeReader',
   components: {
     QrcodeStream
   },
@@ -30,6 +27,8 @@ export default {
   methods: {
     onDecode (result) {
       this.result = result
+      console.log("scanned in component")
+      this.$emit('scanned', result)
     },
 
     async onInit (promise) {

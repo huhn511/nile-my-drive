@@ -1,17 +1,33 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Drive App"/>
+    <QRCodeReader v-if="scanning" @scanned="showDetails" />
+    <OrderDetail v-if="!scanning" :root="root"  />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import QRCodeReader from '@/components/QRCodeReader.vue'
+import OrderDetail from '@/components/OrderDetail.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    QRCodeReader, 
+    OrderDetail
+  },
+  data() {
+    return {
+      scanning: true,
+      root: ''
+    }
+  },
+  methods: {
+    showDetails(root) {
+      console.log("scanned root:", root)
+      this.scanning = false
+      this.root = root
+    }
   }
 }
 </script>
