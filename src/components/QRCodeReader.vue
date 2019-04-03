@@ -2,9 +2,6 @@
   <div class="hello">
     <h1>Scan your QR Code!</h1>
     <p class="error">{{ error }}</p>
-
-    <p class="decode-result">Last result: <b>{{ result }}</b></p>
-
     <qrcode-stream @decode="onDecode" @init="onInit" />
   </div>
 </template>
