@@ -1,13 +1,16 @@
 <template>
-  <div>
+  <div v-loading="loading">
     <h1>Order Detail</h1>
     {{root}}
-    <pre>{{order}}</pre>
+    <p>{{order.data.shipping_location}}</p>
+    <p>view on <a :href="'https://www.google.com/maps/search/?api=1&query=' + location.latitude + ',' + location.longitude">google maps</a></p>
+    <pre >{{order}}</pre>
   </div>
 </template>
 
 <script>
 import { fetch } from "@/utils/MAM";
+const iotaAreaCodes = require('@iota/area-codes');
 
 export default {
   props: ["root"],
@@ -20,6 +23,7 @@ export default {
           id: 0
         }
       },
+      location: {}
     };
   },
   mounted() {
@@ -48,6 +52,11 @@ export default {
     },
     fetchComplete() { 
       this.order = this.sortedMessages[0];
+      let iac = this.order.data.shipping_location
+      console.log("iac", iac);
+      console.log("vaild?", iotaAreaCodes.isValid(iac));
+      this.location = iotaAreaCodes.decode(iac)
+      console.log("this.location", this.location)
     }
   },
   computed: {
