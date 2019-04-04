@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     showDetails(root) {
-      console.log("scanned root:", root)
       this.scanning = false
       this.root = root
     }

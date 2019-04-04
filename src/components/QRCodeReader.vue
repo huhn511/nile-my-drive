@@ -23,9 +23,10 @@ export default {
 
   methods: {
     onDecode (result) {
-      this.result = result
-      console.log("scanned in component")
-      this.$emit('scanned', result)
+      if(result) {
+        this.result = result
+        this.$emit('scanned', result)
+      }
     },
 
     async onInit (promise) {

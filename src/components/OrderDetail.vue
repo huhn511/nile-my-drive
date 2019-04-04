@@ -30,6 +30,7 @@ import { fetch } from "@/utils/MAM";
 const iotaAreaCodes = require("@iota/area-codes");
 
 export default {
+  name: 'OrderDetail',
   props: ["root"],
   data() {
     return {
